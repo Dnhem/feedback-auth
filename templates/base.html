@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="#">Feedme</a>
+        <div class="nav">
+          {% if not session['user'] %}
+            <a class="nav-link btn btn-outline-success me-2" href="/login">Login</a>
+            <a class="nav-link btn btn-outline-success me-2 ml-3" href="/register">Sign up</a>
+          {% else %}
+            <a class="nav-link btn btn-outline-success me-2" href="/logout">Logout</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  {% for msg in get_flashed_messages() %}
+    <div>{{ msg }}</div>
+  {% endfor %}
+
+  {% block content %}
+  
+  {% endblock %}
+</body>
+</html>
